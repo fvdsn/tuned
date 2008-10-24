@@ -1,0 +1,51 @@
+functions : 
+	values  : numbers, symbols.
+		exemple : 123, math.pi 56 
+	units   : after value or signal or effect
+		exemple sine() hz 
+	Signals : ()
+		exemple : sine(), sawtooth() , ...
+	Operators : + - * / <= >=  := 
+	Tracks : # 
+		example : track1# track2#
+	Instruments : $
+		example : violin$ bass$ etc...
+	
+	commands :
+
+		value name = constant ;
+		=> value fun.util = 124;
+
+		
+		signal name(...params...){ ... return signal unit; }
+		=> signal sine2( freq1 hz, freq2 hz){
+			return sine(freq1,0,1) * sine(freq2,0,1);
+		}
+
+		request signal|controller|track|value|effect =>request global variables.
+
+		signal supersine(freq hz){
+			request signal ctrl.phase();
+			request signal ctrl.volume();
+			return sine(freq,ctrl.phase(),ctrl.volume());
+		}
+
+		track trackname; 
+		track += signal | value  when ...;
+		track *= signal | value  when ...;
+		track.vol = 0.9 	 when ...;
+		track = signal(track.fun, ..., ...) when ...
+		track = signal 
+		play  track
+		pause track
+		mute  track
+		cue track 0 track1 at 
+		volume track 0.8
+		bpm 
+
+
+		notes : 
+		la0,la1
+		
+
+

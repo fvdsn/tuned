@@ -1,0 +1,16 @@
+	TUNED
+
+This is a terminal based real time music
+making program. Currently it cannot
+be used in real time. You make your
+song in song.c, compile it all, and
+run the binary to hear your song. 
+
+It is currently being reworked to be
+usable in realtime with jack midi control
+staty tuned.
+
+Install :
+you need a POSIX OS and libao. 
+then run cc with all the c dir
+
