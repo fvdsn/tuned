@@ -1,7 +1,8 @@
 #ifndef __UNITS_H__
 #define __UNITS_H__
 
-#define AUDIO_RATE 44100 /* samples per second */
+#define AUDIO_RATE 192000 /* samples per second */
+#define AUDIO_PLAY_RATE 44100
 #define BYTE_RATE 2 /* bytes per channel per sample */
 #define SOUND_SPEED 300 /*meter per second*/
 

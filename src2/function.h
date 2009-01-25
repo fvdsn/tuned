@@ -3,6 +3,7 @@
 
 typedef long int sample_t;
 typedef struct channel_s channel_t;
+typedef struct buffer_s buffer_t;
 typedef struct fun_s fun_t;
 typedef float (*fun_f)(channel_t *chan, int c, sample_t sample);
 
@@ -73,6 +74,15 @@ struct fun_s{
 	char name[FUN_NAME_LENGTH];
 	channel_t **channel; /*[channel_count]*/
 };
+struct buffer_s{
+	int capacity;
+	int size;
+	float *buffer;
+};
+buffer_t *buffer_new(int capacity);
+void buffer_set(buffer_t *b, float val);
+float buffer_get(buffer_t *b, sample_t s);
+int buffer_has(buffer_t *b, sample_t s);
 
 channel_t *channel_new(fun_f fun, int chan, int f_param_count);
 void	channel_free(channel_t *chan);
@@ -86,6 +96,7 @@ float  fun_compute(fun_t*fun, int chan, sample_t s);
 unit_t fun_get_unit(fun_t* fun);
 int  	fun_channel_count(fun_t *fun);
 void	fun_set_name(fun_t *fun,const char*name);
+void fun_setup_channels(fun_t *fun, fun_f f, int f_param_count, ...);
 void fun_print(fun_t *fun);
 void fun_record_16b(	fun_t *fun, 
 			sample_t start, 
@@ -152,6 +163,20 @@ fun_t * s_hipass(fun_t *a, fun_t *freq);
 fun_t * s_resonance(fun_t *a, fun_t *amp, fun_t *freq);
 fun_t * s_nbody(int body, fun_t *k, fun_t *d, fun_t *in);
 fun_t * s_noise_gate(fun_t *a, fun_t *treshold, fun_t *tolerance);
+
+
+fun_t *f_lin_compress(fun_t *limit, fun_t *gain, fun_t* input);
+
+fun_t *f_pow_compress(fun_t *power, fun_t* input);
+fun_t *f_log_compress(fun_t* input);
+fun_t *f_sin_compress(fun_t* input);
+fun_t *f_sigmoid_compress(fun_t* factor,fun_t* input);
+fun_t *f_cutoff(fun_t* limit,fun_t* input);
+fun_t *f_sigmoid_limit(fun_t* fact,fun_t* input);
+fun_t *f_atan_limit(fun_t* fact,fun_t* input);
+fun_t *f_hard_limit(fun_t* limit,fun_t* input);
+fun_t *s_down_sample(fun_t* sampling_interval,fun_t* input);
+fun_t *f_fade(fun_t *factor, fun_t*a,fun_t*b);
 
 fun_t * a_freq(fun_t *hz);
 fun_t * a_vol(fun_t *vol);

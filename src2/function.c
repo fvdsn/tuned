@@ -200,7 +200,7 @@ void fun_record_16b(	fun_t *fun,
 		i++;
 	}
 }
-static void fun_setup_channels(fun_t *fun, fun_f f, int f_param_count, ...){
+void fun_setup_channels(fun_t *fun, fun_f f, int f_param_count, ...){
 	va_list va;
 	fun_t *tmp;
 	int vchan_count = 0;
