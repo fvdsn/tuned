@@ -1,0 +1,42 @@
+valeur : 0.15unit
+constantes : all minuscules : do re mi fa sol la si pi e 
+functions : all minuscules et _ 
+arrays : [ {valeur|constantes|fonctions} ], ex : [do,re] ,  [ [do 1b 0db]  [re 2b 5db] ]
+inputs  : Majuscule puis minuscules, ex : AudioIn, Keyboard
+outputs : @Majuscule puis minuscules, ex: @AudioOut, @Bpm
+
+units :
+s/sec
+ms/msec
+hz
+b/beat
+hb/hbeat
+qb/qbeat
+eb/ebeat
+a/amp
+ma/mamp
+db
+u/unit
+ /nounit
+
+operateurs : 
+	+ : add
+	- : substract
+	* : mult
+	< : smaller.
+	> : larger. 
+	<< : delay
+	<> : scale
+	&  : mix.
+	|  : queue.
+	|<- : cut after.	
+	->| : cut before.	ex : 1b ->| fun |<- 50p 
+exemple : 
+
+@Bpm = 140
+Con1 = Controller( hz ,1hz, 100hz, 20hz) 
+f   = sin( 15hz , 5db ) 
+f  *= square(Con1)	
+f |<= 10b
+AudioOut = f
+
